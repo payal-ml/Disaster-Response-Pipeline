@@ -42,7 +42,12 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    
+    aid_related_count=list(df.aid_related.value_counts().values)
+    aid_related_names=list(df.aid_related.value_counts().index)
+    weather_related_count=list(df.weather_related.value_counts().values)
+    weather_related_names=list(df.weather_related.value_counts().index) 
+    child_alone_count=list(df.child_alone.value_counts().values)
+    child_alone_names=list(df.child_alone.value_counts().index)    
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -61,6 +66,60 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=aid_related_names,
+                    y=aid_related_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of aid related requests',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Aid_related_category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=weather_related_names,
+                    y=weather_related_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of weather related requests',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Weather_related_category"
+                }
+            }
+        },
+        {
+            'data': [
+                Bar(
+                    x=child_alone_names,
+                    y=child_alone_count
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of child alone requests',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Child|_alone_category"
                 }
             }
         }
